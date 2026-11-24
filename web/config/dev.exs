@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :dumpsite_watch, DumpsiteWatch.Repo,
-  username: "martins",
-  password: "Macdevs",
+  username: System.get_env("PGUSER", "postgres"),
+  password: System.get_env("PGPASSWORD", "postgres"),
   hostname: "localhost",
   database: "dumpsite_watch_dev",
   stacktrace: true,

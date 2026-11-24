@@ -1,1 +1,25 @@
-.venv/
+# Python environments and generated geospatial data
+geo/.venv/
+geo/data/raw/
+geo/data/processed/
+geo/data/outputs/
+geo/**/*.tif
+geo/**/*.tiff
+geo/**/*.gpkg
+geo/**/*.shp
+geo/**/*.shx
+geo/**/*.dbf
+geo/**/*.prj
+geo/**/*.zip
+__pycache__/
+*.py[cod]
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
