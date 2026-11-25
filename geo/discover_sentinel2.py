@@ -88,6 +88,7 @@ def discover(args: argparse.Namespace) -> dict:
         records.append(
             {
                 "id": item.id,
+                "item_url": item.get_self_href(),
                 "collection": item.collection_id,
                 "datetime": properties.get("datetime"),
                 "cloud_cover_percent": properties.get("eo:cloud_cover"),

@@ -65,11 +65,23 @@ The requirements capture the satellite and geospatial stack. From the repository
 source geo/.venv/bin/activate
 python geo/discover_sentinel2.py \
   --aoi geo/data/pilot_county.geojson \
-  --start 2025-01-01 \
+  --start 2024-01-01 \
   --end 2025-12-31
 ```
 
 The boundary must have a declared CRS and polygon geometry. The command queries the Microsoft Planetary Computer STAC catalog and writes an item metadata manifest under ignored `geo/data/raw/`. It does not download or analyze imagery, identify dumpsites, or produce validated findings. The default 20% scene cloud-cover filter is provisional and configurable with `--max-cloud`.
+
+After reviewing imagery terms and generating a manifest, build one composite per comparison period:
+
+```sh
+python geo/build_indices.py \
+  --manifest geo/data/raw/sentinel2-items.json \
+  --aoi geo/data/pilot_county.geojson \
+  --period early=2024-01-01/2024-03-31 \
+  --period late=2025-01-01/2025-03-31
+```
+
+This writes clipped 20 m median composites and NDVI, NDBI, and bare-soil index rasters with JSON provenance sidecars under ignored `geo/data/processed/composites/`. Twenty metres matches the coarser Sentinel-2 SWIR and scene-classification bands used here. The indices are spectral inputs for later review, not dumpsite detections; no thresholds, candidate polygons, or validation metrics are produced.
 
 ## Data sources and planned outputs
 
@@ -82,6 +94,7 @@ Planned outputs include candidate site polygons, change in area over time, a tra
 - Phoenix application source and commands live in `web/`.
 - Python dependencies are listed in `geo/requirements.txt`.
 - Sentinel-2 item discovery lives in `geo/discover_sentinel2.py`; its output is catalog metadata only.
+- Seasonal composites and spectral-index generation live in `geo/build_indices.py`; execution awaits a selected study area and sourced catalog manifest.
 - The PostGIS extension migration is in `web/priv/repo/migrations/`.
 - The known-sites register template is `geo/data/known_sites.csv` and currently has no records.
 - No satellite imagery, verified sites, classifier, or measured model metrics are included yet.
