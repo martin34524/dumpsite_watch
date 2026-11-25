@@ -2,7 +2,7 @@
 
 Dumpsite Watch is an early-warning and cleanup-prioritization project for illegal and growing dumpsites. It is being built for the Arbiter Hacks V1 **Rethinking Waste** track. The intended system combines Sentinel-2 satellite observations for larger, established sites with geotagged citizen photos for small or new dumps, then ranks sites by size, growth, and proximity to rivers and homes.
 
-> **Project status:** repository and application skeleton. The current Phoenix app is the generated landing page plus a PostGIS-ready database setup. Satellite detection, validated site data, risk scoring, maps, photo reporting, and cleanup briefs are planned work and are not implemented yet. No detection or accuracy results are claimed.
+> **Project status:** the Phoenix officer-dashboard shell, PostGIS site-record schema, and provisional explainable score are in place. A Python command can discover Sentinel-2 catalog items for a supplied study-area boundary and write a provenance manifest. The pilot county, verified reference sites, imagery processing, maps, photo reporting, and cleanup briefs are still outstanding. No detection or accuracy results are claimed.
 
 ## Planned workflow
 
@@ -22,7 +22,7 @@ The proposed score uses site size, growth, proximity to water, and proximity to 
 ## Repository layout
 
 - `web/` — Elixir/Phoenix LiveView application, Ecto repository, and PostGIS extension migration.
-- `geo/` — Python geospatial environment requirements. The virtual environment belongs in `geo/.venv/` and is ignored by Git.
+- `geo/` — Python geospatial environment, Sentinel-2 STAC discovery command, and requirements. The virtual environment belongs in `geo/.venv/` and is ignored by Git.
 - `geo/data/` — add verified, shareable reference data here. Keep downloaded imagery and generated rasters/vectors in ignored `raw/`, `processed/`, or `outputs/` subdirectories.
 
 ## Requirements
@@ -58,7 +58,18 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-The requirements capture the planned satellite and geospatial stack. A processing pipeline and input datasets have not been added yet.
+The requirements capture the satellite and geospatial stack. From the repository root, discover catalog items after obtaining a reviewed boundary file:
+
+```sh
+# Run from the repository root (use `cd ..` first if currently in geo/).
+source geo/.venv/bin/activate
+python geo/discover_sentinel2.py \
+  --aoi geo/data/pilot_county.geojson \
+  --start 2025-01-01 \
+  --end 2025-12-31
+```
+
+The boundary must have a declared CRS and polygon geometry. The command queries the Microsoft Planetary Computer STAC catalog and writes an item metadata manifest under ignored `geo/data/raw/`. It does not download or analyze imagery, identify dumpsites, or produce validated findings. The default 20% scene cloud-cover filter is provisional and configurable with `--max-cloud`.
 
 ## Data sources and planned outputs
 
@@ -70,8 +81,10 @@ Planned outputs include candidate site polygons, change in area over time, a tra
 
 - Phoenix application source and commands live in `web/`.
 - Python dependencies are listed in `geo/requirements.txt`.
+- Sentinel-2 item discovery lives in `geo/discover_sentinel2.py`; its output is catalog metadata only.
 - The PostGIS extension migration is in `web/priv/repo/migrations/`.
-- No satellite imagery, verified known-sites CSV, classifier, or measured model metrics are included yet.
+- The known-sites register template is `geo/data/known_sites.csv` and currently has no records.
+- No satellite imagery, verified sites, classifier, or measured model metrics are included yet.
 
 ## License
 
