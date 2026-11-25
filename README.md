@@ -2,7 +2,7 @@
 
 Dumpsite Watch is an early-warning and cleanup-prioritization project for illegal and growing dumpsites. It is being built for the Arbiter Hacks V1 **Rethinking Waste** track. The intended system combines Sentinel-2 satellite observations for larger, established sites with geotagged citizen photos for small or new dumps, then ranks sites by size, growth, and proximity to rivers and homes.
 
-> **Project status:** the Phoenix officer-dashboard shell, PostGIS site-record schema, and provisional explainable score are in place. A Python command can discover Sentinel-2 catalog items for a supplied study-area boundary and write a provenance manifest. The pilot county, verified reference sites, imagery processing, maps, photo reporting, and cleanup briefs are still outstanding. No detection or accuracy results are claimed.
+> **Project status:** the Phoenix officer-dashboard shell, PostGIS site-record schema, and provisional explainable score are in place. Nairobi County is the provisional pilot based on public waste-monitoring documentation; its boundary and 8–15 independently sourced reference locations still need to be acquired and checked. Python commands now cover STAC discovery, seasonal composites, spectral indices, and reviewable candidate polygons, but have not been run against real study-area imagery. No detection or accuracy results are claimed.
 
 ## Planned workflow
 
@@ -92,6 +92,8 @@ Review candidate polygons in a GIS tool against imagery or other evidence. In th
 ## Data sources and planned outputs
 
 The project plan proposes Sentinel-2 Level-2A imagery from Microsoft Planetary Computer STAC (or Copernicus Data Space), known sites from OpenStreetMap, public records and manual review, and contextual layers from OpenStreetMap, Google Open Buildings, and WorldPop. Confirm each dataset's current terms and attribution requirements before publishing derived data.
+
+Nairobi is provisional because the County documented enforcement against illegal dumping at Likoni Road and Falcon Road, while NEMA reported a joint NEMA/HOT dumpsite-mapping initiative in the Nairobi–Athi–Galana–Sabaki catchment. These are leads for source collection, not a verified site register. The boundary candidate is the OCHA/HDX Kenya COD administrative-boundary dataset; verify the downloaded version and license before use.
 
 Planned outputs include candidate site polygons, change in area over time, a transparent priority score, validation against known sites, citizen reports, and printable cleanup briefs. Add source, date, license, and validation notes for each dataset and report measured metrics only after validation has been performed.
 
