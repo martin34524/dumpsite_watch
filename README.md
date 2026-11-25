@@ -87,6 +87,8 @@ Candidate polygonization is also available, but it requires explicit values for 
 
 The command writes only `unreviewed_candidates` GeoPackage features and a provenance sidecar under ignored `geo/data/outputs/`. These spectral candidates can include bare soil, construction, quarries, farms, and other false positives. No threshold values are recommended yet, and candidate outputs are not validated detections.
 
+Review candidate polygons in a GIS tool against imagery or other evidence. In the GeoPackage, set `review_status` to `confirmed_waste`, `false_positive`, or `uncertain`, and record `review_reason`, `reviewed_by`, `reviewed_on`, and `review_evidence_url`. Keep the overall `status` as `unreviewed_candidate` until the candidate has been reviewed; these labels are reference-review outcomes, not model predictions.
+
 ## Data sources and planned outputs
 
 The project plan proposes Sentinel-2 Level-2A imagery from Microsoft Planetary Computer STAC (or Copernicus Data Space), known sites from OpenStreetMap, public records and manual review, and contextual layers from OpenStreetMap, Google Open Buildings, and WorldPop. Confirm each dataset's current terms and attribution requirements before publishing derived data.

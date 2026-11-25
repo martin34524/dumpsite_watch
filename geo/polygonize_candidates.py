@@ -93,6 +93,11 @@ def candidates_from_mask(mask: np.ndarray, transform, minimum_area: float):
                 "area_m2": round(area_m2, 2),
                 "pixel_count": pixel_count,
                 "status": "unreviewed_candidate",
+                "review_status": "pending",
+                "review_reason": "",
+                "reviewed_by": "",
+                "reviewed_on": "",
+                "review_evidence_url": "",
                 "geometry": polygons[0],
             }
         )
