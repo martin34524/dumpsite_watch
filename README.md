@@ -83,6 +83,10 @@ python geo/build_indices.py \
 
 This writes clipped 20 m median composites and NDVI, NDBI, and bare-soil index rasters with JSON provenance sidecars under ignored `geo/data/processed/composites/`. Twenty metres matches the coarser Sentinel-2 SWIR and scene-classification bands used here. The indices are spectral inputs for later review, not dumpsite detections; no thresholds, candidate polygons, or validation metrics are produced.
 
+Candidate polygonization is also available, but it requires explicit values for `--ndbi-min`, `--bsi-min`, `--ndvi-max`, and `--min-area-m2`. Select those values only after review against known sites.
+
+The command writes only `unreviewed_candidates` GeoPackage features and a provenance sidecar under ignored `geo/data/outputs/`. These spectral candidates can include bare soil, construction, quarries, farms, and other false positives. No threshold values are recommended yet, and candidate outputs are not validated detections.
+
 ## Data sources and planned outputs
 
 The project plan proposes Sentinel-2 Level-2A imagery from Microsoft Planetary Computer STAC (or Copernicus Data Space), known sites from OpenStreetMap, public records and manual review, and contextual layers from OpenStreetMap, Google Open Buildings, and WorldPop. Confirm each dataset's current terms and attribution requirements before publishing derived data.
@@ -95,6 +99,7 @@ Planned outputs include candidate site polygons, change in area over time, a tra
 - Python dependencies are listed in `geo/requirements.txt`.
 - Sentinel-2 item discovery lives in `geo/discover_sentinel2.py`; its output is catalog metadata only.
 - Seasonal composites and spectral-index generation live in `geo/build_indices.py`; execution awaits a selected study area and sourced catalog manifest.
+- Exploratory polygonization lives in `geo/polygonize_candidates.py`; operator-supplied thresholds and reference-site review are required.
 - The PostGIS extension migration is in `web/priv/repo/migrations/`.
 - The known-sites register template is `geo/data/known_sites.csv` and currently has no records.
 - No satellite imagery, verified sites, classifier, or measured model metrics are included yet.
