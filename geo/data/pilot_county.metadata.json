@@ -1,0 +1,24 @@
+{
+  "acquired_at": "2026-11-26T09:25:47.668120+00:00",
+  "provider": "geoBoundaries / William & Mary geoLab",
+  "source_api": "https://www.geoboundaries.org/api/current/gbOpen/KEN/ADM1/",
+  "source_geojson": "geo/data/kenya_counties.geojson",
+  "boundary_id": "KEN-ADM1-32016919",
+  "feature_shape_id": "32016919B57908315498598",
+  "source": "RCMRD GeoPortal, Africa GeoPortal",
+  "source_url": "https://rcmrd.africageoportal.com/datasets/africageoportal::kenya-county-boundaries/about",
+  "boundary_level": "ADM1 counties",
+  "boundary_year_represented": 2020,
+  "license_reported_by_geoBoundaries": "Public Domain",
+  "license_source": "https://rcmrd.africageoportal.com/datasets/africageoportal::kenya-county-boundaries/about",
+  "county": "Nairobi",
+  "feature_count": 1,
+  "crs": "EPSG:4326",
+  "geometry_type": "Polygon",
+  "source_feature_count": 47,
+  "validation": "Nairobi feature name matched; polygon geometry is non-empty and valid.",
+  "limitations": [
+    "Boundary represents the 2020 source dataset and has not been compared against a current legal survey.",
+    "Verify source terms and attribution before external publication or operational use."
+  ]
+}
