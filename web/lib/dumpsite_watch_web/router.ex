@@ -17,7 +17,9 @@ defmodule DumpsiteWatchWeb.Router do
   scope "/", DumpsiteWatchWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live_session :dashboard do
+      live "/", DashboardLive, :index
+    end
   end
 
   # Other scopes may use custom stacks.

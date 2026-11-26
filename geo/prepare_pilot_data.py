@@ -5,8 +5,9 @@ from __future__ import annotations
 
 import argparse
 import csv
-import html
+import json
 import math
+import re
 from pathlib import Path
 
 import geopandas as gpd
@@ -20,7 +21,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--boundary", type=Path, default=ROOT / "geo/data/pilot_county.geojson")
     parser.add_argument("--sites", type=Path, default=ROOT / "geo/data/known_sites.csv")
-    parser.add_argument("--output", type=Path, default=ROOT / "web/priv/static/images/pilot-leads.svg")
+    parser.add_argument("--data-output", type=Path, default=ROOT / "web/priv/pilot_data.json")
     return parser.parse_args()
 
 
@@ -64,37 +65,53 @@ def main() -> int:
 
     geometry = county_geometry.simplify(0.0005, preserve_topology=True)
     polygons = list(geometry.geoms) if isinstance(geometry, MultiPolygon) else [geometry]
-    boundary_paths = []
+    map_path_parts = []
     for polygon in polygons:
         if not isinstance(polygon, Polygon):
             continue
         path_data = ring_path(polygon.exterior)
         path_data += " " + " ".join(ring_path(ring) for ring in polygon.interiors)
-        boundary_paths.append(f'<path d="{path_data}" fill-rule="evenodd"/>')
+        map_path_parts.append(path_data)
 
     with args.sites.open(newline="", encoding="utf-8") as stream:
         sites = list(csv.DictReader(stream))
-    points = []
+    lead_records = []
     outside_count = 0
     for site in sites:
         lon, lat = float(site["longitude"]), float(site["latitude"])
         if not county_geometry.covers(Point(lon, lat)):
             outside_count += 1
         x, y = screen(lon, lat)
-        label = html.escape(site["name"], quote=True)
-        points.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="6" aria-label="Unreviewed study sampling point: {label}"><title>{label} — unreviewed 2021 study sampling point</title></circle>')
+        evidence = site["evidence_notes"].strip()
+        evidence_type = "dump_site_reported" if "dumpsite" in evidence.casefold() else "river_dumping_reported"
+        slug = re.sub(r"[^a-z0-9]+", "-", site["name"].casefold()).strip("-")
+        lead_records.append({
+            "id": slug,
+            "name": site["name"],
+            "latitude": lat,
+            "longitude": lon,
+            "map_x": round(x, 1),
+            "map_y": round(y, 1),
+            "source_name": site["source_name"],
+            "source_url": site["source_url"],
+            "validation_status": site["validation_status"],
+            "study_period": "Field data, 2021",
+            "evidence_type": evidence_type,
+            "evidence_notes": evidence,
+        })
 
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" role="img" aria-labelledby="map-title map-desc">
-<title id="map-title">Nairobi County and unreviewed river-study sampling points</title>
-<desc id="map-desc">A simplified outline of Nairobi County with {len(sites)} points from a 2021 Ngong River water-quality study. Points indicate sampling locations where the paper reported nearby dumping, not dumpsite footprints or verified current conditions. {outside_count} points fall outside the county polygon and require review.</desc>
-<rect width="{width}" height="{height}" fill="#eef3ed"/>
-<g fill="#c9d8cd" stroke="#6d8977" stroke-width="2.2" stroke-linejoin="round">{''.join(boundary_paths)}</g>
-<g fill="#d35d42" stroke="#fffdf8" stroke-width="2">{''.join(points)}</g>
-<g font-family="system-ui,sans-serif" font-size="13" fill="#53675b"><text x="28" y="34">Nairobi County · simplified outline</text><text x="28" y="{height-24}">● {len(sites)} unreviewed 2021 study sampling points · not dump footprints</text></g>
-</svg>'''
-    args.output.write_text(svg, encoding="utf-8")
-    print(f"Wrote {len(sites)} study points to {args.output}; {outside_count} points fall outside county boundary.")
+    data = {
+        "county": "Nairobi",
+        "boundary_source": "geoBoundaries Kenya ADM1, 2020",
+        "boundary_path": " ".join(map_path_parts),
+        "view_box": [0, 0, width, height],
+        "outside_point_count": outside_count,
+        "lead_count": len(lead_records),
+        "leads": lead_records,
+    }
+    args.data_output.parent.mkdir(parents=True, exist_ok=True)
+    args.data_output.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+    print(f"Wrote {len(sites)} study points and county geometry to {args.data_output}; {outside_count} points fall outside county boundary.")
     return 0
 
 

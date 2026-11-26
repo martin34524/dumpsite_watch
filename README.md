@@ -108,8 +108,8 @@ Planned outputs include candidate site polygons, change in area over time, a tra
 - Exploratory polygonization lives in `geo/polygonize_candidates.py`; operator-supplied thresholds and reference-site review are required.
 - The PostGIS extension migration is in `web/priv/repo/migrations/`.
 - The known-sites register is `geo/data/known_sites.csv`; it currently contains ten unreviewed study sampling points, not validated dump footprints.
-- Regenerate the static overview map with `python geo/render_pilot_map.py` after changing the county boundary or reference CSV; the map is an outline, not a basemap.
-- The homepage shows source-backed sampling leads with explicit unreviewed labels; it does not rank them as dumpsites.
+- Regenerate the bundled LiveView geometry and lead data with `python geo/prepare_pilot_data.py` after changing the county boundary or reference CSV.
+- The LiveView homepage shows source-backed sampling leads with explicit unreviewed labels; it does not rank them as dumpsites.
 - No satellite imagery, verified sites, classifier, or measured model metrics are included yet.
 
 ## License
