@@ -10,8 +10,12 @@ row per location and include the source and evidence link. Use
 Record the date the site was observed when known. Preserve provider attribution
 and licensing notes in the Obsidian Decisions and Sources note.
 
-The register currently contains only its header. Nairobi is the provisional
-pilot, but no independently reviewed source records have been entered yet.
+The register includes ten unreviewed Ngong River study sampling points where
+the paper reports nearby dumping activity. These are leads, not dumpsite
+footprints: each coordinate is a water-sampling location, and the observations
+are from field work in 2021. Review current imagery or field evidence before
+using them as detection labels. The confidence field is blank until a human
+reviewer assigns it.
 
 `download_county_boundary.py` fetches the current geoBoundaries Kenya ADM1
 release, extracts one named county to `pilot_county.geojson`, and writes a
