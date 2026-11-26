@@ -2,7 +2,7 @@
 
 Dumpsite Watch is an early-warning and cleanup-prioritization project for illegal and growing dumpsites. It is being built for the Arbiter Hacks V1 **Rethinking Waste** track. The intended system combines Sentinel-2 satellite observations for larger, established sites with geotagged citizen photos for small or new dumps, then ranks sites by size, growth, and proximity to rivers and homes.
 
-> **Project status:** the Phoenix officer-dashboard shell, PostGIS site-record schema, and provisional explainable score are in place. Nairobi County is the provisional pilot; its 2020 geoBoundaries county polygon is now stored and validated as EPSG:4326. Ten unreviewed river-study sampling points are recorded as dumping leads, not mapped dumpsite footprints. Python commands cover STAC discovery, seasonal composites, spectral indices, and reviewable candidate polygons; catalog discovery is blocked by DNS from this environment, so no satellite items or detection results are claimed.
+> **Project status:** the Phoenix officer overview now shows the Nairobi boundary and ten unreviewed river-study sampling points. The points are leads, not mapped dumpsite footprints or rankings. The 2020 geoBoundaries county polygon is stored and validated as EPSG:4326. Python commands cover STAC discovery, seasonal composites, spectral indices, and reviewable candidate polygons; catalog discovery is blocked by DNS from this environment, so no satellite items or detection results are claimed.
 
 ## Planned workflow
 
@@ -107,7 +107,9 @@ Planned outputs include candidate site polygons, change in area over time, a tra
 - Seasonal composites and spectral-index generation live in `geo/build_indices.py`; execution awaits a selected study area and sourced catalog manifest.
 - Exploratory polygonization lives in `geo/polygonize_candidates.py`; operator-supplied thresholds and reference-site review are required.
 - The PostGIS extension migration is in `web/priv/repo/migrations/`.
-- The known-sites register template is `geo/data/known_sites.csv` and currently has no records.
+- The known-sites register is `geo/data/known_sites.csv`; it currently contains ten unreviewed study sampling points, not validated dump footprints.
+- Regenerate the static overview map with `python geo/render_pilot_map.py` after changing the county boundary or reference CSV; the map is an outline, not a basemap.
+- The homepage shows source-backed sampling leads with explicit unreviewed labels; it does not rank them as dumpsites.
 - No satellite imagery, verified sites, classifier, or measured model metrics are included yet.
 
 ## License

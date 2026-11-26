@@ -26,14 +26,14 @@
     <section class="mb-8 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
       <div>
         <p class="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-[#648071]">Field intelligence</p>
-        <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">Cleanup priorities</h1>
+        <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">Nairobi pilot overview</h1>
         <p class="mt-2 max-w-2xl text-sm leading-6 text-[#68766e]">
-          A shared view of dumpsite candidates, growth signals, and community reports. Site rankings will appear when a county and verified data are connected.
+          Boundary and published field observations are assembled. Study points remain unreviewed and do not mark dumpsite footprints.
         </p>
       </div>
       <div class="flex items-center gap-2 self-start rounded-xl border border-[#e1e7e1] bg-white px-4 py-3 text-sm text-[#718077] lg:self-auto">
         <.icon name="hero-map-pin" class="size-4 text-[#789182]" />
-        <span>County not selected</span>
+        <span>Nairobi County · Pilot</span>
         <.icon name="hero-chevron-down" class="ml-2 size-4" />
       </div>
     </section>
@@ -41,65 +41,53 @@
     <section aria-label="Current monitoring summary" class="mb-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
       <div class="rounded-2xl border border-[#e5eae5] bg-white p-5">
         <div class="flex items-center justify-between text-sm text-[#718077]"><span>Sites under watch</span><.icon name="hero-eye" class="size-5" /></div>
-        <p class="mt-5 text-3xl font-semibold">—</p><p class="mt-1 text-xs text-[#87928b]">No verified sites loaded</p>
+        <p class="mt-5 text-3xl font-semibold">10</p><p class="mt-1 text-xs text-[#87928b]">Unreviewed study leads</p>
       </div>
       <div class="rounded-2xl border border-[#e5eae5] bg-white p-5">
         <div class="flex items-center justify-between text-sm text-[#718077]"><span>Reports to review</span><.icon name="hero-camera" class="size-5" /></div>
-        <p class="mt-5 text-3xl font-semibold">—</p><p class="mt-1 text-xs text-[#87928b]">Citizen intake not connected</p>
+        <p class="mt-5 text-3xl font-semibold">2021</p><p class="mt-1 text-xs text-[#87928b]">Published field observations</p>
       </div>
       <div class="rounded-2xl border border-[#e5eae5] bg-white p-5">
         <div class="flex items-center justify-between text-sm text-[#718077]"><span>Area monitored</span><.icon name="hero-square-3-stack-3d" class="size-5" /></div>
-        <p class="mt-5 text-3xl font-semibold">—</p><p class="mt-1 text-xs text-[#87928b]">County boundary not set</p>
+        <p class="mt-5 text-3xl font-semibold">Loaded</p><p class="mt-1 text-xs text-[#87928b]">2020 geoBoundaries · EPSG:4326</p>
       </div>
       <div class="rounded-2xl border border-[#e5eae5] bg-white p-5">
         <div class="flex items-center justify-between text-sm text-[#718077]"><span>Data status</span><span class="size-2 rounded-full bg-[#d99b47]"></span></div>
-        <p class="mt-5 text-xl font-semibold">Setup in progress</p><p class="mt-1 text-xs text-[#87928b]">No live sources configured</p>
+        <p class="mt-5 text-xl font-semibold">Catalog pending</p><p class="mt-1 text-xs text-[#87928b]">Planetary Computer DNS unavailable</p>
       </div>
     </section>
 
     <section class="grid gap-6 xl:grid-cols-[minmax(0,1.65fr)_minmax(340px,0.85fr)]">
       <article class="overflow-hidden rounded-2xl border border-[#e5eae5] bg-white">
         <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#edf0ed] px-5 py-4 sm:px-6">
-          <div><h2 class="font-semibold">Monitoring map</h2><p class="mt-1 text-xs text-[#87928b]">Map layers will appear after the study area is configured</p></div>
-          <span class="rounded-full bg-[#f1f4f1] px-3 py-1.5 text-xs font-medium text-[#718077]">No study area</span>
+          <div><h2 class="font-semibold">Study area &amp; reference points</h2><p class="mt-1 text-xs text-[#87928b]">County outline with published river-study sampling coordinates</p></div>
+          <span class="rounded-full bg-[#fff4e8] px-3 py-1.5 text-xs font-medium text-[#976431]">Unreviewed leads</span>
         </div>
-        <div class="relative grid min-h-[360px] place-items-center overflow-hidden bg-[#eef2ed] sm:min-h-[470px]">
-          <div class="absolute inset-0 opacity-60" aria-hidden="true">
-            <svg viewBox="0 0 900 520" preserveAspectRatio="xMidYMid slice" class="h-full w-full">
-              <path d="M-20 120C120 80 170 170 290 135s180-90 300-30 190 30 340-35M-20 205c140-40 190 50 310 15s180-90 300-30 190 30 340-35M-20 290c140-40 190 50 310 15s180-90 300-30 190 30 340-35M-20 375c140-40 190 50 310 15s180-90 300-30 190 30 340-35M-20 460c140-40 190 50 310 15s180-90 300-30 190 30 340-35" fill="none" stroke="#d7e0d6" stroke-width="2" />
-              <path d="M120-20c20 110 90 150 50 260s-5 160 80 300m180-560c20 110 90 150 50 260s-5 160 80 300m180-560c20 110 90 150 50 260s-5 160 80 300" fill="none" stroke="#dce4da" stroke-width="1.5" />
-              <path d="M-20 330C100 280 180 330 270 280s150-70 220-25 130 80 240 20 160-50 210-65" fill="none" stroke="#c3d9d3" stroke-width="5" stroke-linecap="round" />
-            </svg>
-          </div>
-          <div class="relative mx-5 max-w-sm rounded-2xl border border-white/80 bg-white/90 p-6 text-center shadow-sm backdrop-blur-sm">
-            <span class="mx-auto mb-4 grid size-12 place-items-center rounded-full bg-[#eaf1e9] text-[#41634f]"><.icon name="hero-map" class="size-6" /></span>
-            <h3 class="font-semibold">Your map starts with a study area</h3>
-            <p class="mt-2 text-sm leading-6 text-[#718077]">Choose a county, then add validated dumpsite locations or connect the detection pipeline. This background is illustrative only.</p>
-          </div>
-          <span class="absolute bottom-4 left-5 text-[10px] font-medium uppercase tracking-wider text-[#89958b]">Illustrative map canvas · no geographic data</span>
+        <div class="grid min-h-[360px] place-items-center overflow-hidden bg-[#eef2ed] p-3 sm:min-h-[470px] sm:p-6">
+          <img src={~p"/images/pilot-leads.svg"} alt="Map of Nairobi County with ten unreviewed river-study sampling points where the paper reported nearby dumping. The points are sampling locations, not dump footprints." class="max-h-[460px] w-full object-contain" />
         </div>
       </article>
 
       <article class="rounded-2xl border border-[#e5eae5] bg-white">
         <div class="flex items-center justify-between border-b border-[#edf0ed] px-5 py-4 sm:px-6">
-          <div><h2 class="font-semibold">Priority sites</h2><p class="mt-1 text-xs text-[#87928b]">Ranked with explainable risk factors</p></div>
-          <button type="button" disabled class="cursor-not-allowed text-xs font-semibold text-[#8a968e]">View all</button>
+          <div><h2 class="font-semibold">Study sampling points</h2><p class="mt-1 text-xs text-[#87928b]">Ngong River field study · 2021</p></div>
+          <span class="text-xs font-semibold text-[#976431]">10 unreviewed</span>
         </div>
-        <div class="grid min-h-[300px] place-items-center px-6 py-10 text-center">
-          <div class="max-w-xs">
-            <span class="mx-auto mb-4 grid size-12 place-items-center rounded-full bg-[#f3f5f2] text-[#7e8c82]"><.icon name="hero-clipboard-document-list" class="size-6" /></span>
-            <h3 class="font-semibold">No sites to rank yet</h3>
-            <p class="mt-2 text-sm leading-6 text-[#7a877f]">The ranking will show site size, growth, distance to water, and nearby people once source data is available.</p>
-          </div>
+        <div class="divide-y divide-[#edf0ed] px-5 sm:px-6">
+          <div class="flex items-center justify-between gap-3 py-3"><div><p class="text-sm font-medium">Kibera Lindi Mosque</p><p class="text-xs text-[#87928b]">36.789409° E · 1.314737° S</p></div><span class="shrink-0 rounded-full bg-[#fff4e8] px-2.5 py-1 text-[10px] font-semibold text-[#976431]">Review</span></div>
+          <div class="flex items-center justify-between gap-3 py-3"><div><p class="text-sm font-medium">Outering Road Bridge</p><p class="text-xs text-[#87928b]">36.891182° E · 1.306702° S</p></div><span class="shrink-0 rounded-full bg-[#fff4e8] px-2.5 py-1 text-[10px] font-semibold text-[#976431]">Review</span></div>
+          <div class="flex items-center justify-between gap-3 py-3"><div><p class="text-sm font-medium">Enterprise Road Bridge</p><p class="text-xs text-[#87928b]">36.861962° E · 1.315906° S</p></div><span class="shrink-0 rounded-full bg-[#fff4e8] px-2.5 py-1 text-[10px] font-semibold text-[#976431]">Review</span></div>
+          <div class="flex items-center justify-between gap-3 py-3"><div><p class="text-sm font-medium">Likoni Road Bridge</p><p class="text-xs text-[#87928b]">36.854686° E · 1.315993° S</p></div><span class="shrink-0 rounded-full bg-[#fff4e8] px-2.5 py-1 text-[10px] font-semibold text-[#976431]">Review</span></div>
+          <div class="flex items-center justify-between gap-3 py-3"><div><p class="text-sm font-medium">Mukuru Kayaba</p><p class="text-xs text-[#87928b]">36.849808° E · 1.313388° S</p></div><span class="shrink-0 rounded-full bg-[#fff4e8] px-2.5 py-1 text-[10px] font-semibold text-[#976431]">Review</span></div>
+          <div class="flex items-center justify-between gap-3 py-3"><div><p class="text-sm font-medium">Soweto Embakasi Bridge</p><p class="text-xs text-[#87928b]">36.909088° E · 1.292102° S</p></div><span class="shrink-0 rounded-full bg-[#fff4e8] px-2.5 py-1 text-[10px] font-semibold text-[#976431]">Review</span></div>
+          <div class="flex items-center justify-between gap-3 py-3"><div><p class="text-sm font-medium">Kayole</p><p class="text-xs text-[#87928b]">36.918681° E · 1.281739° S</p></div><span class="shrink-0 rounded-full bg-[#fff4e8] px-2.5 py-1 text-[10px] font-semibold text-[#976431]">Review</span></div>
+          <div class="flex items-center justify-between gap-3 py-3"><div><p class="text-sm font-medium">Matopeni Twiga</p><p class="text-xs text-[#87928b]">36.934911° E · 1.265998° S</p></div><span class="shrink-0 rounded-full bg-[#fff4e8] px-2.5 py-1 text-[10px] font-semibold text-[#976431]">Review</span></div>
+          <div class="flex items-center justify-between gap-3 py-3"><div><p class="text-sm font-medium">Njiru Kangundo Road Bridge</p><p class="text-xs text-[#87928b]">36.945836° E · 1.248449° S</p></div><span class="shrink-0 rounded-full bg-[#fff4e8] px-2.5 py-1 text-[10px] font-semibold text-[#976431]">Review</span></div>
+          <div class="flex items-center justify-between gap-3 py-3"><div><p class="text-sm font-medium">Mong'etho before confluence</p><p class="text-xs text-[#87928b]">36.954100° E · 1.244761° S</p></div><span class="shrink-0 rounded-full bg-[#fff4e8] px-2.5 py-1 text-[10px] font-semibold text-[#976431]">Review</span></div>
         </div>
         <div class="border-t border-[#edf0ed] px-5 py-4 sm:px-6">
-          <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.15em] text-[#87928b]">Planned scoring inputs</p>
-          <div class="flex flex-wrap gap-2">
-            <span class="rounded-full bg-[#f2f5f1] px-3 py-1.5 text-xs text-[#647269]">Site size</span>
-            <span class="rounded-full bg-[#f2f5f1] px-3 py-1.5 text-xs text-[#647269]">Growth rate</span>
-            <span class="rounded-full bg-[#f2f5f1] px-3 py-1.5 text-xs text-[#647269]">Proximity to water</span>
-            <span class="rounded-full bg-[#f2f5f1] px-3 py-1.5 text-xs text-[#647269]">Nearby population</span>
-          </div>
+          <p class="text-xs leading-5 text-[#718077]">Each coordinate marks a river water-sampling location. The paper reports nearby dumping activity, but does not map waste-site boundaries or establish current conditions.</p>
+          <a href="https://www.mdpi.com/2073-4441/15/4/660" class="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-[#315d49] hover:text-[#173c32]">Open study source <.icon name="hero-arrow-up-right" class="size-3.5" /></a>
         </div>
       </article>
     </section>
@@ -108,9 +96,9 @@
       <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div class="flex gap-4">
           <span class="hidden size-10 shrink-0 place-items-center rounded-xl bg-white text-[#53725d] sm:grid"><.icon name="hero-sparkles" class="size-5" /></span>
-          <div><h2 class="text-sm font-semibold">Next: choose the pilot county</h2><p class="mt-1 max-w-2xl text-sm leading-6 text-[#6f7e72]">The project plan calls for one county with known dumpsites for validation. That choice unlocks the first real map layer and keeps detection claims measurable.</p></div>
+          <div><h2 class="text-sm font-semibold">Next: connect satellite observations</h2><p class="mt-1 max-w-2xl text-sm leading-6 text-[#6f7e72]">The Nairobi boundary is ready. Sentinel-2 catalog discovery still needs network access; after that, candidate polygons can be compared with these dated study leads and reviewed against imagery.</p></div>
         </div>
-        <span class="shrink-0 rounded-lg border border-[#d5dfd4] bg-white/70 px-3 py-2 text-xs font-medium text-[#647269]">Pilot area needed</span>
+        <span class="shrink-0 rounded-lg border border-[#d5dfd4] bg-white/70 px-3 py-2 text-xs font-medium text-[#647269]">Nairobi boundary ready</span>
       </div>
     </section>
     <footer class="py-8 text-center text-xs text-[#98a29b]">Dumpsite Watch · Early warning for cleaner communities</footer>
