@@ -95,6 +95,8 @@ The project plan proposes Sentinel-2 Level-2A imagery from Microsoft Planetary C
 
 Nairobi is provisional because the County documented enforcement against illegal dumping at Likoni Road and Falcon Road, while NEMA reported a joint NEMA/HOT dumpsite-mapping initiative in the Nairobi–Athi–Galana–Sabaki catchment. These are leads for source collection, not a verified site register. The boundary candidate is the OCHA/HDX Kenya COD administrative-boundary dataset; verify the downloaded version and license before use.
 
+The current geoBoundaries API also lists a Kenya ADM1 county layer sourced to RCMRD GeoPortal and Africa GeoPortal. To fetch and extract Nairobi with source metadata, run `python geo/download_county_boundary.py`. This writes `geo/data/pilot_county.geojson` and a `.metadata.json` sidecar. Inspect both before using the boundary; the command checks the county name, polygon geometry, and EPSG:4326 CRS, but does not certify legal boundary accuracy.
+
 Planned outputs include candidate site polygons, change in area over time, a transparent priority score, validation against known sites, citizen reports, and printable cleanup briefs. Add source, date, license, and validation notes for each dataset and report measured metrics only after validation has been performed.
 
 ## Development notes

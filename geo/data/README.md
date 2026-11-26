@@ -10,5 +10,10 @@ row per location and include the source and evidence link. Use
 Record the date the site was observed when known. Preserve provider attribution
 and licensing notes in the Obsidian Decisions and Sources note.
 
-The register currently contains only its header. The pilot county and source
-records have not been selected, so no locations are claimed yet.
+The register currently contains only its header. Nairobi is the provisional
+pilot, but no independently reviewed source records have been entered yet.
+
+`download_county_boundary.py` fetches the current geoBoundaries Kenya ADM1
+release, extracts one named county to `pilot_county.geojson`, and writes a
+provenance sidecar. Inspect the source metadata and geometry before using it;
+the file is a candidate study boundary, not a legal boundary determination.
