@@ -34,19 +34,22 @@ The proposed score uses site size, growth, proximity to water, and proximity to 
 
 ## Run the Phoenix app locally
 
-Create a PostgreSQL role/database or adjust the environment values below to match your local setup. The migration enables PostGIS, so the PostGIS extension package must be installed on the PostgreSQL server.
+The development database connection is read from `web/.env`. Copy the template and enter the PostgreSQL username, password, host, and database name. The `.env` file is ignored by Git. The migration enables PostGIS, so the PostGIS extension package must be installed on the PostgreSQL server.
 
 ```sh
 cd web
-export PGUSER=postgres
-export PGPASSWORD=postgres
+cp .env.example .env
+# Edit .env with your PostgreSQL connection details, then load it in this shell:
+set -a
+source .env
+set +a
 mix setup
 mix phx.server
 ```
 
 Open <http://localhost:4000>. If port 4000 is occupied, run `PORT=4001 mix phx.server` and open <http://localhost:4001>.
 
-`mix setup` fetches dependencies, creates and migrates the development database, runs the seed script, and builds frontend assets. The seed script is currently empty; there is no demo site dataset yet. For a different PostgreSQL host or database name, update the repository settings in `web/config/dev.exs` or use your local configuration. Do not commit passwords or production secrets.
+`mix setup` fetches dependencies, creates and migrates the development database, runs the seed script, and builds frontend assets. The seed script is currently empty; there is no demo site dataset yet. Keep passwords and production secrets out of Git.
 
 ## Prepare the Python environment
 

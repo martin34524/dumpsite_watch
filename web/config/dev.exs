@@ -4,8 +4,8 @@ import Config
 config :dumpsite_watch, DumpsiteWatch.Repo,
   username: System.get_env("PGUSER", "postgres"),
   password: System.get_env("PGPASSWORD", "postgres"),
-  hostname: "localhost",
-  database: "dumpsite_watch_dev",
+  hostname: System.get_env("PGHOST", "localhost"),
+  database: System.get_env("PGDATABASE", "dumpsite_watch_dev"),
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
